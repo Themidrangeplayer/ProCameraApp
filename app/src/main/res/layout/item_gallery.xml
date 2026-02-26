@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="3dp">
+    <ImageView android:id="@+id/ivThumb"
+        android:layout_width="match_parent" android:layout_height="120dp"
+        android:scaleType="centerCrop" android:background="#1A1A1A"/>
+    <TextView android:id="@+id/tvDuration"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#FFFFFF" android:textSize="11sp"
+        android:background="#AA000000"
+        android:paddingHorizontal="6dp" android:paddingVertical="2dp"
+        android:layout_gravity="bottom|end" android:layout_margin="4dp"/>
+    <ImageView android:id="@+id/ivPlayIcon"
+        android:layout_width="32dp" android:layout_height="32dp"
+        android:src="@android:drawable/ic_media_play"
+        android:layout_gravity="center" android:alpha="0.7"/>
+</FrameLayout>

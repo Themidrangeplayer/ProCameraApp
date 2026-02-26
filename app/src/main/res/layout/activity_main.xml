@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- Camera Preview -->
+    <TextureView
+        android:id="@+id/textureView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- REC dot + timer -->
+    <View
+        android:id="@+id/recordingDot"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:background="@drawable/circle_red"
+        android:visibility="gone"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/recordingTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00:00"
+        android:textColor="#FF4444"
+        android:textSize="14sp"
+        android:fontFamily="monospace"
+        android:visibility="gone"
+        android:layout_marginStart="6dp"
+        app:layout_constraintTop_toTopOf="@id/recordingDot"
+        app:layout_constraintBottom_toBottomOf="@id/recordingDot"
+        app:layout_constraintStart_toEndOf="@id/recordingDot" />
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp"
+        android:background="#AA000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scrollbars="none">
+            <LinearLayout
+                android:id="@+id/lensContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp" />
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/tvResolution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4K"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            android:background="@drawable/pill_bg_dark"
+            android:layout_marginStart="8dp" />
+
+        <TextView
+            android:id="@+id/tvFps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30fps"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            android:background="@drawable/pill_bg_dark"
+            android:layout_marginStart="8dp" />
+
+        <ImageView
+            android:id="@+id/btnGallery"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:background="@drawable/pill_bg_dark"
+            android:padding="8dp"
+            android:layout_marginStart="8dp" />
+
+        <ImageView
+            android:id="@+id/btnSettings"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@android:drawable/ic_menu_preferences"
+            android:background="@drawable/pill_bg_dark"
+            android:padding="8dp"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+    <!-- Settings Panel -->
+    <LinearLayout
+        android:id="@+id/settingsPanel"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#EE111111"
+        android:padding="16dp"
+        android:translationX="300dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="SETTINGS" android:textColor="#888888" android:textSize="10sp"
+            android:letterSpacing="0.15" android:layout_marginBottom="12dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="14dp">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="HDR Recording" android:textColor="#FFFFFF" android:textSize="13sp"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchHdr" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="14dp">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="LOG Format" android:textColor="#FFFFFF" android:textSize="13sp"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchLog" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="14dp">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Max Bitrate" android:textColor="#FFFFFF" android:textSize="13sp"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchMaxBitrate" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:checked="true"/>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#333333" android:layout_marginVertical="8dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="RESOLUTION" android:textColor="#888888" android:textSize="10sp"
+            android:letterSpacing="0.15" android:layout_marginBottom="8dp"/>
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none">
+            <LinearLayout android:id="@+id/resolutionContainer" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:orientation="horizontal"/>
+        </HorizontalScrollView>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="FRAME RATE" android:textColor="#888888" android:textSize="10sp"
+            android:letterSpacing="0.15" android:layout_marginTop="12dp" android:layout_marginBottom="8dp"/>
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none">
+            <LinearLayout android:id="@+id/fpsContainer" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:orientation="horizontal"/>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+    <!-- Right Side Controls: ISO + Shutter -->
+    <LinearLayout
+        android:id="@+id/rightControls"
+        android:layout_width="78dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingVertical="24dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="ISO" android:textColor="#AAAAAA" android:textSize="9sp" android:letterSpacing="0.1"/>
+        <TextView android:id="@+id/tvIsoValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="AUTO" android:textColor="#FFD700" android:textSize="11sp" android:layout_marginBottom="2dp"/>
+
+        <FrameLayout android:layout_width="match_parent" android:layout_height="120dp">
+            <SeekBar android:id="@+id/sliderIso" android:layout_width="100dp" android:layout_height="wrap_content"
+                android:layout_gravity="center" android:rotation="-90"
+                android:visibility="gone" android:max="100" android:progress="0"/>
+        </FrameLayout>
+
+        <TextView android:id="@+id/btnAutoIso" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="A" android:textColor="#FFD700" android:textSize="11sp"
+            android:background="@drawable/pill_bg_accent" android:paddingHorizontal="10dp" android:paddingVertical="4dp"
+            android:layout_marginBottom="16dp"/>
+
+        <View android:layout_width="32dp" android:layout_height="1dp" android:background="#333333" android:layout_marginVertical="8dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="SHUTTER" android:textColor="#AAAAAA" android:textSize="9sp" android:letterSpacing="0.1"/>
+        <TextView android:id="@+id/tvShutterValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="AUTO" android:textColor="#FFD700" android:textSize="11sp" android:layout_marginBottom="2dp"/>
+
+        <FrameLayout android:layout_width="match_parent" android:layout_height="120dp">
+            <SeekBar android:id="@+id/sliderShutter" android:layout_width="100dp" android:layout_height="wrap_content"
+                android:layout_gravity="center" android:rotation="-90"
+                android:visibility="gone" android:max="100" android:progress="50"/>
+        </FrameLayout>
+
+        <TextView android:id="@+id/btnAutoShutter" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="A" android:textColor="#FFD700" android:textSize="11sp"
+            android:background="@drawable/pill_bg_accent" android:paddingHorizontal="10dp" android:paddingVertical="4dp"/>
+    </LinearLayout>
+
+    <!-- Left Side Controls: Focus + WB -->
+    <LinearLayout
+        android:id="@+id/leftControls"
+        android:layout_width="78dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingVertical="24dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="FOCUS" android:textColor="#AAAAAA" android:textSize="9sp" android:letterSpacing="0.1"/>
+        <TextView android:id="@+id/tvFocusValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="AUTO" android:textColor="#00BFFF" android:textSize="11sp" android:layout_marginBottom="2dp"/>
+
+        <FrameLayout android:layout_width="match_parent" android:layout_height="120dp">
+            <SeekBar android:id="@+id/sliderFocus" android:layout_width="100dp" android:layout_height="wrap_content"
+                android:layout_gravity="center" android:rotation="-90"
+                android:visibility="gone" android:max="100" android:progress="0"/>
+        </FrameLayout>
+
+        <TextView android:id="@+id/btnAutoFocus" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="AF" android:textColor="#00BFFF" android:textSize="11sp"
+            android:background="@drawable/pill_bg_blue" android:paddingHorizontal="10dp" android:paddingVertical="4dp"
+            android:layout_marginBottom="16dp"/>
+
+        <View android:layout_width="32dp" android:layout_height="1dp" android:background="#333333" android:layout_marginVertical="8dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="WB" android:textColor="#AAAAAA" android:textSize="9sp" android:letterSpacing="0.1"/>
+        <TextView android:id="@+id/tvWbValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="AUTO" android:textColor="#00BFFF" android:textSize="11sp" android:layout_marginBottom="2dp"/>
+
+        <FrameLayout android:layout_width="match_parent" android:layout_height="120dp">
+            <SeekBar android:id="@+id/sliderWb" android:layout_width="100dp" android:layout_height="wrap_content"
+                android:layout_gravity="center" android:rotation="-90"
+                android:visibility="gone" android:max="100" android:progress="50"/>
+        </FrameLayout>
+
+        <TextView android:id="@+id/btnAutoWb" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="AWB" android:textColor="#00BFFF" android:textSize="11sp"
+            android:background="@drawable/pill_bg_blue" android:paddingHorizontal="10dp" android:paddingVertical="4dp"/>
+    </LinearLayout>
+
+    <!-- Status bar -->
+    <TextView
+        android:id="@+id/tvStatusBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:background="#88000000"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- Bottom Bar -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="20dp"
+        android:background="#AA000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivThumbnail"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/thumbnail_bg"
+            android:scaleType="centerCrop"
+            android:layout_marginEnd="16dp" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+            <View
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:background="@drawable/record_outer_ring" />
+            <View
+                android:id="@+id/btnRecord"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:background="@drawable/record_btn" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/btnFlip"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:src="@android:drawable/ic_menu_rotate"
+            android:background="@drawable/pill_bg_dark"
+            android:padding="14dp"
+            android:layout_marginStart="16dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
